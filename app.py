@@ -7,6 +7,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 import numpy as np
 from dotenv import load_dotenv
 from models import db, Prediction
+import click
 
 load_dotenv()
 os.chdir(os.path.dirname(__file__))
@@ -20,8 +21,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-with app.app_context():
+@app.cli.command("init-db")
+def init_db():
     db.create_all()
+    click.echo("Tablas creadas.")
 
 with open('ad_model.pkl', 'rb') as f:
     model = pickle.load(f)
