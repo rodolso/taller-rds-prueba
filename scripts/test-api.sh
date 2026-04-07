@@ -1,10 +1,8 @@
 #!/bin/bash
 
-API="http://<EC2_IP>:5000"
+API="http://13.61.145.115/:5000"
 
-echo "========================================"
-echo " Test de la API - Advertising Model"
-echo "========================================"
+echo " Iniciando testeo de la API Advertising Model"
 echo ""
 
 call() {
@@ -43,15 +41,12 @@ sleep 2
 call 199.8 2.6 21.2
 sleep 2
 
-# Una llamada con valor faltante para ver el warning
-echo "-> Prediccion con newspaper faltante (missing value)"
+echo "-> Prediccion con newspaper faltante"
 curl -s "$API/api/v1/predict?tv=66.1&radio=5.8"
 echo ""
 sleep 2
 
 echo ""
-echo "========================================"
-echo " Verificando registros guardados en RDS"
-echo "========================================"
+echo " Verificado de registros guardados en RDS"
 echo ""
 curl -s "$API/api/v1/predictions?limit=10" | python3 -m json.tool
