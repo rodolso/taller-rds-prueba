@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API="http://13.61.145.115/:5000"
+API="http://13.61.145.115:5000/"
 
 echo " Iniciando testeo de la API Advertising Model"
 echo ""
